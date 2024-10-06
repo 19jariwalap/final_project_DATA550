@@ -1,0 +1,35 @@
+---
+title: "Final Project (First Draft)"
+author: "Parth Jariwala"
+date: "2024-10-06"
+output: html_document
+---
+## Introduction
+
+This data set is on a Pima Indian Native American cohort and was from the National Institute of Diabetes and Digestive and Kidney Disease. This data set includes several medical predictor variables and one outcome variable, whether the person has diabetes or not. Variables include, number of pregnancies, glucose level, BMI, age, diastolic blood pressure, and a few more. For my R markdown report I will look to see the distribution of the glucose levels across the cohort and which variables have an association with the outcome (Diabetes diagnosis)
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, loading-data, echo=FALSE, message=FALSE, warning=FALSE}
+library(RCurl)
+library(tidyverse)
+
+# Reading csv from author's public online repository
+
+diabetes_url <- getURL("https://raw.githubusercontent.com/19jariwalap/final_project_DATA550/refs/heads/main/diabetes.csv")
+diabetes <- read.csv(text = diabetes_url)
+
+```
+
+```{r}
+
+```
+
+## 
+
+```{r, echo=FALSE}
+```
+
+.
