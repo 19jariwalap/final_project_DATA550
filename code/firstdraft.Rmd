@@ -76,6 +76,7 @@ hist1 <- ggplot(diabetes) +
 
 hist1
 ```
+
 Figure 1 displays the distribution of age in the Pima Indian Native American
 Cohort.
 
