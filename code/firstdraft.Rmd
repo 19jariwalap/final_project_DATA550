@@ -18,18 +18,64 @@ library(tidyverse)
 
 # Reading csv from author's public online repository
 
-diabetes_url <- getURL("https://raw.githubusercontent.com/19jariwalap/final_project_DATA550/refs/heads/main/diabetes.csv")
+diabetes_url <- getURL("https://raw.githubusercontent.com/19jariwalap/final_project_DATA550/refs/heads/main/data/diabetes.csv")
 diabetes <- read.csv(text = diabetes_url)
 
+diabetes <- diabetes %>% 
+	mutate(Outcome = factor(Outcome, levels = c(0, 1), labels = c("No Diabetes", "Diabetes")))
+
 ```
 
-```{r}
+## Descriptive Statistics
+```{r, tbl-one, echo=FALSE}
+#| label: tbl-one
+#| tbl-cap: Descriptive Statistics by Outcome
+library(gtsummary)
 
+# Summary table for dataset
+table_one <- diabetes %>%
+  tbl_summary(
+  	by = Outcome,
+    statistic = all_continuous() ~ "{mean} ({sd})",
+    label = list(
+      Pregnancies ~ "Number of Pregnancies",
+      Glucose ~ "Glucose Level",
+      BloodPressure ~ "Blood Pressure (mm Hg)",
+      SkinThickness ~ "Skin Thickness (mm)",
+      Insulin ~ "Insulin Level (μIU/mL)",
+      BMI ~ "BMI",
+      DiabetesPedigreeFunction ~ "Diabetes Pedigree Function",
+      Age ~ "Age (Years)"
+    ),
+    missing_text = "Missing"
+  ) %>%
+  	add_overall(last = TRUE) %>%
+  	modify_header(label ~ "**Variable**") %>%
+  	bold_labels()
+
+table_one
 ```
+Table 1 displays the descriptive statistics of the data set and is stratified
+by the outcome. The mean values are given in the table as well as the standard 
+deviation values in parentheses.
 
-## 
+## Data Visualization
+```{r, fig-one,echo=FALSE, warning=FALSE}
+#| label: fig-hist
 
-```{r, echo=FALSE}
+library(ggplot2)
+library(RColorBrewer)
+hist1 <- ggplot(diabetes) +
+	aes(x = Age) +
+	geom_histogram(color = "black", fill = "lightblue", bins = 50) +
+	labs(
+		title = "Distribution of Age in the Cohort",
+		x = "Age (Years)",
+		y = "Frequency"
+	)
+
+hist1
 ```
+Figure 1 displays the distribution of age in the Pima Indian Native American
+Cohort.
 
-.
