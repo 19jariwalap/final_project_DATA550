@@ -66,17 +66,17 @@ deviation values in parentheses.
 library(ggplot2)
 library(RColorBrewer)
 hist1 <- ggplot(diabetes) +
-	aes(x = Age) +
+	aes(x = Glucose) +
 	geom_histogram(color = "black", fill = "lightblue", bins = 50) +
 	labs(
-		title = "Distribution of Age in the Cohort",
-		x = "Age (Years)",
+		title = "Distribution of Glucose Levels in the Cohort",
+		x = "Glucose (mg/dL)",
 		y = "Frequency"
 	)
 
 hist1
 ```
 
-Figure 1 displays the distribution of age in the Pima Indian Native American
+Figure 1 displays the distribution of glucose levels in the Pima Indian Native American
 Cohort.
 

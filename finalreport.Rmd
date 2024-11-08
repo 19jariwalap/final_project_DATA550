@@ -1,0 +1,60 @@
+---
+title: "Analysis of the Pima Native American Cohort"
+author: "Parth Jariwala"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(gtsummary)
+library(ggplot2)
+library(here)
+library(gt)
+```
+
+# Introduction
+This data set is on a Pima Native American cohort and was from the 
+National Institute of Diabetes and Digestive and Kidney Disease. 
+This data set includes several medical predictor variables and one outcome 
+variable, whether the person has diabetes or not. Variables include, number 
+of pregnancies, glucose level, BMI, age, diastolic blood pressure, and a few 
+more. For my R markdown report I will look to see the distribution of the 
+glucose levels across the cohort and which variables have an association with 
+the outcome (Diabetes diagnosis).
+
+# Descriptive Statistics
+In Table 1, the key variables in the data set are summarized and 
+stratified whether the participant has a diabetes diagnosis or not 
+
+```{r, desc-stats, echo=FALSE}
+table_one <- readRDS(
+	here::here("output/table_one.rds"))
+
+table_one
+```
+
+
+```{r, fig-one, echo=FALSE}
+#| fig.cap = "Figure 1. Disribution of Glucose Levels"
+figure1 <- readRDS(
+	here::here("output/figure_1.rds")
+)
+
+figure1
+```
+A histogram was created to display the distribution of glucose levels
+across the cohort.
+
+
+# Results and Analysis
+```{r, data-analysis, echo=FALSE}
+
+table2 <- readRDS(
+	here::here("output/log_regr_summary.rds")
+)
+
+table2
+```
+Table 2. A logistic regression model was ran to find an association between each of the 
+predictor variables and the diabetes diagnosis outcome. 
