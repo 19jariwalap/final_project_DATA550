@@ -13,15 +13,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, loading-data, echo=FALSE, message=FALSE, warning=FALSE}
-library(RCurl)
 library(tidyverse)
 
-# Reading csv from author's public online repository
+# Reading CSV
+diabetes_raw <- read.csv(here::here("data", "diabetes.csv"))
 
-diabetes_url <- getURL("https://raw.githubusercontent.com/19jariwalap/final_project_DATA550/refs/heads/main/data/diabetes.csv")
-diabetes <- read.csv(text = diabetes_url)
-
-diabetes <- diabetes %>% 
+diabetes <- diabetes_raw %>%
 	mutate(Outcome = factor(Outcome, levels = c(0, 1), labels = c("No Diabetes", "Diabetes")))
 
 ```

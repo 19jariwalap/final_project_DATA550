@@ -1,5 +1,7 @@
+library(tidyverse)
 library(broom)
 library(gt)
+library(here)
 
 diabetes <- readRDS(here::here("data", "diabetes.rds"))
 

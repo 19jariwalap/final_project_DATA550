@@ -8,19 +8,24 @@ finalreport.html: output/table_one.rds \
 
 # Rule to load in the data
 data/diabetes.rds:
-	Rscript 01_load_data.R
+	Rscript code/01_load_data.R
 
 # Rule to create table one output from second script
 output/table_one.rds: data/diabetes.rds
-	Rscript 02_desc_stats.R
+	Rscript code/02_desc_stats.R
 
 # Rule to create figure one output from third script
 output/figure_1.rds: data/diabetes.rds
-	Rscript 03_figure1.R
+	Rscript code/03_figure1.R
 
 # Rule to create table 2 output from fourth script
 output/log_regr_summary.rds: data/diabetes.rds
-	Rscript 04_data_analysis.R
+	Rscript code/04_data_analysis.R
 
+.PHONY: clean
 clean:
-	rm -f data/diabetes.rds output/*.rds report.html
+	rm -f data/diabetes.rds output/*.rds finalreport.html
+
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt = FALSE)"
