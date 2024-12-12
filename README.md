@@ -44,6 +44,15 @@ tables and figure
 	the make file and it will produce `finalreport.html`. You can also simply run
 	`make`
 
+# ** Generating using Docker on **Windows** **
 
+1. Run `make final_report/finalreport.html`. 
+ It will create a final_report/ and runs the docker image 
+ 19jariwalap/final_7_new which can also be found at 
+ https://hub.docker.com/repository/docker/19jariwalap/final_7_new.
+ The local directory will be mounted to /home/rstudio/project/final_report inside
+ the container. Lastly, the command will build finalreport.html inside the 
+ container, which is synced to the local final_report folder.
 
+* !! The target will only build on a Windows specific system. !! *
 

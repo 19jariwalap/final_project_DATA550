@@ -2,7 +2,7 @@
 finalreport.html: output/table_one.rds \
 	output/figure_1.rds \
 	output/log_regr_summary.rds \
-	finalreport.rmd code/05_render_report.R
+	finalreport.Rmd code/05_render_report.R
 	Rscript code/05_render_report.R
 
 
@@ -29,3 +29,11 @@ clean:
 .PHONY: install
 install:
 	Rscript -e "renv::restore(prompt = FALSE)"
+
+# rule to build the report automatically in our container
+# $$(<command>) does command substitution in make
+
+final_report/finalreport.html:
+	mkdir -p final_report
+	# Windows
+	docker run -v "/$$(pwd)/final_report":/home/rstudio/project/final_report 19jariwalap/final_7_new
